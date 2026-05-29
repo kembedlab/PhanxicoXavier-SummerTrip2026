@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lịch Trình Hè – Ca Đoàn Nha Trang & Cam Đức</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sea:    #0b7fa5;
+    --sky:    #d4eef8;
+    --sand:   #f5ede0;
+    --coral:  #e0714a;
+    --leaf:   #2e7d52;
+    --night:  #1a2a3a;
+    --gold:   #c9943a;
+    --white:  #fdfaf6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--white);
+    font-family: 'Nunito', sans-serif;
+    color: var(--night);
+    min-height: 100vh;
+  }
+
+  /* ── HERO ─────────────────────────────────────── */
+  .hero {
+    background: linear-gradient(160deg, #063a58 0%, #0b7fa5 55%, #67c4e0 100%);
+    padding: 52px 24px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 Q15 10 30 30 Q45 50 60 30' stroke='%23ffffff12' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") repeat;
+    animation: waves 8s linear infinite;
+  }
+  @keyframes waves { to { background-position: 60px 0; } }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,.18);
+    border: 1px solid rgba(255,255,255,.35);
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 6vw, 46px);
+    color: #fff;
+    line-height: 1.25;
+    position: relative;
+  }
+  .hero h1 em { font-style: italic; color: #a8dff5; }
+  .hero-sub {
+    color: rgba(255,255,255,.78);
+    margin-top: 12px;
+    font-size: 15px;
+    letter-spacing: .3px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+    position: relative;
+  }
+  .meta-chip {
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.3);
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 13px;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .meta-chip span { font-size: 16px; }
+
+  /* ── WAVE DIVIDER ─────────────────────────────── */
+  .wave-divider {
+    display: block;
+    width: 100%;
+    margin-top: -2px;
+    color: var(--white);
+  }
+
+  /* ── WRAPPER ──────────────────────────────────── */
+  .wrapper { max-width: 780px; margin: 0 auto; padding: 0 20px 60px; }
+
+  /* ── DAY BLOCK ────────────────────────────────── */
+  .day-block { margin-top: 48px; }
+
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .day-circle {
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: #fff;
+  }
+  .day-circle.sat  { background: linear-gradient(135deg, var(--sea), #0d9dcc); }
+  .day-circle.sun  { background: linear-gradient(135deg, var(--coral), #e8935a); }
+  .day-circle.fri  { background: linear-gradient(135deg, var(--leaf), #3a9e65); }
+
+  .day-label h2 { font-size: 21px; font-weight: 700; line-height: 1.15; }
+  .day-label p  { font-size: 13px; color: #637b8a; margin-top: 2px; }
+
+  .day-divider { border: none; border-top: 2px dashed #d8e8f0; margin: 0; flex: 1; }
+
+  /* ── TIMELINE ─────────────────────────────────── */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 9px; top: 6px; bottom: 6px;
+    width: 2px;
+    background: linear-gradient(to bottom, #0b7fa5 0%, #d8e8f0 100%);
+    border-radius: 2px;
+  }
+
+  .event {
+    position: relative;
+    margin-bottom: 22px;
+    animation: fadeUp .5s ease both;
+  }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+  .event:nth-child(1)  { animation-delay: .05s; }
+  .event:nth-child(2)  { animation-delay: .10s; }
+  .event:nth-child(3)  { animation-delay: .15s; }
+  .event:nth-child(4)  { animation-delay: .20s; }
+  .event:nth-child(5)  { animation-delay: .25s; }
+  .event:nth-child(6)  { animation-delay: .30s; }
+  .event:nth-child(7)  { animation-delay: .35s; }
+  .event:nth-child(8)  { animation-delay: .40s; }
+  .event:nth-child(9)  { animation-delay: .45s; }
+
+  .dot {
+    position: absolute;
+    left: -23px; top: 14px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--sea);
+    border: 2.5px solid var(--white);
+    box-shadow: 0 0 0 2px var(--sea);
+  }
+  .dot.highlight { background: var(--coral); box-shadow: 0 0 0 2px var(--coral); }
+  .dot.green     { background: var(--leaf);  box-shadow: 0 0 0 2px var(--leaf); }
+  .dot.gold      { background: var(--gold);  box-shadow: 0 0 0 2px var(--gold); }
+
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 14px 18px;
+    box-shadow: 0 2px 12px rgba(11,127,165,.10);
+    border-left: 4px solid var(--sea);
+    transition: box-shadow .2s;
+  }
+  .card:hover { box-shadow: 0 6px 24px rgba(11,127,165,.16); }
+  .card.coral  { border-left-color: var(--coral); }
+  .card.green  { border-left-color: var(--leaf); }
+  .card.gold   { border-left-color: var(--gold); }
+  .card.night  { border-left-color: var(--night); background: #f0f7fb; }
+
+  .card-time {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--sea);
+    margin-bottom: 4px;
+  }
+  .card.coral  .card-time { color: var(--coral); }
+  .card.green  .card-time { color: var(--leaf); }
+  .card.gold   .card-time { color: var(--gold); }
+  .card.night  .card-time { color: var(--night); }
+
+  .card-title {
+    font-size: 15.5px;
+    font-weight: 700;
+    line-height: 1.35;
+    display: flex; align-items: center; gap: 7px;
+    flex-wrap: wrap;
+  }
+  .card-icon { font-size: 18px; }
+
+  .card-note {
+    font-size: 13px;
+    color: #5a7080;
+    margin-top: 6px;
+    line-height: 1.6;
+  }
+  .card img.event-img {
+    width: 100%;
+    max-height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 9px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-top: 7px;
+  }
+  .tag-free    { background: #d4f4e4; color: #1a6e3e; }
+  .tag-fee     { background: #fde8d8; color: #a04020; }
+  .tag-food    { background: #fff3d4; color: #7a4e0e; }
+  .tag-prayer  { background: #e8d8f8; color: #5a2a80; }
+  .tag-depart  { background: #d8eaf8; color: #0a4a70; }
+
+  /* ── TIPS ─────────────────────────────────────── */
+  .tips-section {
+    margin-top: 52px;
+    background: linear-gradient(135deg, #eaf6fb, #fdfaf6);
+    border-radius: 20px;
+    padding: 30px 28px;
+    border: 1px solid #cde8f2;
+  }
+  .tips-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--sea);
+    margin-bottom: 18px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .tip-list { list-style: none; }
+  .tip-list li {
+    display: flex; gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid #daedf5;
+    font-size: 14px;
+    line-height: 1.55;
+    color: #344a58;
+  }
+  .tip-list li:last-child { border-bottom: none; }
+  .tip-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── ATTRACTION GRID ──────────────────────────── */
+  .attractions { margin-top: 52px; }
+  .attractions h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--sea);
+    margin-bottom: 18px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .attr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .attr-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.07);
+    border-top: 4px solid var(--sea);
+    transition: transform .2s;
+  }
+  .attr-card:hover { transform: translateY(-3px); }
+  .attr-card.coral { border-top-color: var(--coral); }
+  .attr-card.green { border-top-color: var(--leaf); }
+
+  .attr-icon { font-size: 26px; margin-bottom: 8px; }
+  .attr-name { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .attr-desc { font-size: 12.5px; color: #5a7080; line-height: 1.5; margin-bottom: 8px; }
+  .attr-price { font-size: 12px; font-weight: 700; color: var(--leaf); }
+  .attr-price.paid { color: var(--coral); }
+
+  /* ── FOOTER ───────────────────────────────────── */
+  .footer {
+    margin-top: 60px;
+    text-align: center;
+    padding: 28px 20px;
+    background: var(--night);
+    color: rgba(255,255,255,.55);
+    font-size: 13px;
+    border-radius: 20px 20px 0 0;
+  }
+  .footer strong { color: rgba(255,255,255,.85); }
+
+  /* ── DEPARTURE NOTE ───────────────────────────── */
+  .depart-note {
+    background: linear-gradient(135deg, #0b7fa5, #063a58);
+    border-radius: 14px;
+    padding: 18px 20px;
+    color: #fff;
+    margin-bottom: 36px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .depart-note .icon { font-size: 30px; }
+  .depart-note h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .depart-note p  { font-size: 13px; opacity: .85; line-height: 1.55; }
+
+  @media (max-width:480px) {
+    .attr-grid { grid-template-columns: 1fr 1fr; }
+    .tips-section { padding: 22px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">🎵 Ca Đoàn · Hè 2026</div>
+  <h1>Nha Trang<br><em>&amp; Cam Đức</em></h1>
+  <p class="hero-sub">Hành trình 3 ngày 2 đêm · Khởi hành từ TP.HCM</p>
+  <div class="hero-meta">
+    <div class="meta-chip"><span>👥</span> ~30 người</div>
+    <div class="meta-chip"><span>📍</span> Sài Gòn → Nha Trang → Cam Đức → Sài Gòn</div>
+    <div class="meta-chip"><span>🏠</span> Nhà nghỉ Phục Linh</div>
+    <div class="meta-chip"><span>🌊</span> Bãi Dài</div>
+  </div>
+</header>
+<svg class="wave-divider" viewBox="0 0 1440 54" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 54L60 46C120 38 240 22 360 18C480 14 600 22 720 26C840 30 960 30 1080 26C1200 22 1320 14 1380 10L1440 6V0H0V54Z"/>
+</svg>
+
+<div class="wrapper">
+
+  <!-- DEPARTURE NOTE -->
+  <div class="depart-note" style="margin-top: 32px;">
+    <div class="icon">🚌</div>
+    <div>
+      <h4>Xuất phát từ TP.HCM</h4>
+      <p>
+        <strong>Phương án 1:</strong> Khởi hành tối Thứ 5 (khoảng 20:00–21:00); đến Nha Trang sáng Thứ 6 (~04:00–05:00). <strong>Sáng Thứ 6 sẽ là Ngày 1</strong> của hành trình.
+        <br><br>
+        <strong>Phương án 2:</strong> Khởi hành sáng Thứ 6 (khoảng 04:00–06:00); đến Nha Trang vào trưa Thứ 6 (~11:00–13:00). Ngày 1 sẽ bắt đầu từ trưa/chiều Thứ 6.
+        <br><br>
+        Lưu ý: chỉ nêu thời điểm khởi hành ở đây — nhóm tự chọn phương tiện phù hợp và nên đặt trước chỗ ngồi/khách sạn cho đoàn ~30 người.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── NGÀY 1 ─────────────────────────────────── -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-circle fri">1</div>
+      <div class="day-label">
+        <h2>Ngày 1</h2>
+        <p>Nha Trang – Tham quan thành phố</p>
+      </div>
+      <hr class="day-divider">
+    </div>
+
+    <div class="timeline">
+
+      <div class="event">
+        <div class="dot"></div>
+        <div class="card">
+          <div class="card-time">06:00</div>
+          <div class="card-title"><span class="card-icon">☕</span> Ăn sáng, cà phê tại Nha Trang</div>
+          <p class="card-note">Bắt đầu ngày mới bằng bữa sáng nhẹ và cà phê quanh khu Trần Phú hoặc gần chợ Đầm.</p>
+          <span class="tag tag-food">🍽️ Bữa sáng</span>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot green"></div>
+        <div class="card green">
+          <div class="card-time">07:00</div>
+          <div class="card-title"><span class="card-icon">⛪</span> Tham quan Nhà thờ Núi (Nhà thờ Đá)</div>
+          <p class="card-note">Tham quan kiến trúc nhà thờ cổ, chụp hình đoàn và dành thời gian cầu nguyện, thăm viếng.</p>
+          <span class="tag tag-free">🆓 Tham quan</span>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot"></div>
+        <div class="card">
+          <div class="card-time">08:30</div>
+          <div class="card-title"><span class="card-icon">🏯</span> Tháp Bà Ponagar</div>
+          <p class="card-note">Di tích Chăm Pa cổ, thăm viếng và tìm hiểu văn hoá địa phương.</p>
+          <span class="tag tag-fee">🎫 Vé tham quan</span>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot gold"></div>
+        <div class="card gold">
+          <div class="card-time">10:00</div>
+          <div class="card-title"><span class="card-icon">🎭</span> Nhà hát Đó (show: đang liên hệ giá vé)</div>
+          <p class="card-note">Dự kiến xem show văn nghệ tại Nhà hát Đó — liên hệ vé trước để đảm bảo chỗ cho đoàn.</p>
+          <span class="tag tag-depart">ℹ️ Liên hệ vé</span>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot highlight"></div>
+        <div class="card coral">
+          <div class="card-time">10:45</div>
+          <div class="card-title"><span class="card-icon">💎</span> Bảo tàng Ngọc trai Hoàng Gia</div>
+          <p class="card-note">Tham quan quy trình nuôi cấy và mẫu ngọc trai đẹp, phù hợp làm quà lưu niệm.</p>
+          <span class="tag tag-fee">🎫 Tham quan</span>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot highlight"></div>
+        <div class="card coral">
+          <div class="card-time">11:00</div>
+          <div class="card-title"><span class="card-icon">🍽️</span> Di chuyển & ăn trưa</div>
+          <p class="card-note">Ăn trưa tại nhà hàng địa phương — nghỉ ngơi trước khi nhận phòng buổi chiều.</p>
+          <span class="tag tag-food">🍲 Ăn trưa</span>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot night"></div>
+        <div class="card night">
+          <div class="card-time">13:00</div>
+          <div class="card-title"><span class="card-icon">🛏️</span> Nhận phòng nghỉ trưa tại khách sạn</div>
+          <p class="card-note">Nhận phòng, nghỉ ngơi, sắp xếp hành lý.</p>
+          <span class="tag tag-depart">🏨 Check-in</span>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot"></div>
+        <div class="card">
+          <div class="card-time">15:00</div>
+          <div class="card-title"><span class="card-icon">🌊</span> Tắm biển</div>
+          <p class="card-note">Thời gian thư giãn trên bãi biển, chơi trò chơi, chụp hình kỷ niệm.</p>
+          <span class="tag tag-free">🏖️ Bãi biển</span>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot green"></div>
+        <div class="card green">
+          <div class="card-time">17:30</div>
+          <div class="card-title"><span class="card-icon">🚿</span> Về khách sạn tắm, thay đồ</div>
+          <p class="card-note">Chuẩn bị trang phục cho bữa tối và hoạt động buổi tối.</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot highlight"></div>
+        <div class="card coral">
+          <div class="card-time">18:00</div>
+          <div class="card-title"><span class="card-icon">🍴</span> Di chuyển đi ăn tối</div>
+          <p class="card-note">Chọn nhà hàng hải sản hoặc quán ăn địa phương phù hợp đoàn.</p>
+          <span class="tag tag-food">🍽️ Tối</span>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot"></div>
+        <div class="card">
+          <div class="card-time">20:00</div>
+          <div class="card-title"><span class="card-icon">🌃</span> Tự do dạo phố, bờ biển</div>
+          <p class="card-note">Dạo bộ khu vực Trần Phú, thưởng thức không khí biển về đêm.</p>
+          <span class="tag tag-free">🆓 Tự do</span>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot night"></div>
+        <div class="card night">
+          <div class="card-time">22:00</div>
+          <div class="card-title"><span class="card-icon">🌙</span> Về khách sạn nghỉ đêm</div>
+          <p class="card-note">Nghỉ ngơi chuẩn bị cho hành trình ngày tiếp theo.</p>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end day-block -->
+
+
+  <!-- ── NGÀY 2 ─────────────────────────────────── -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-circle sat">2</div>
+      <div class="day-label">
+        <h2>Ngày 2</h2>
+        <p>Cam Đức – Bãi Dài · Sinh hoạt ca đoàn</p>
+      </div>
+      <hr class="day-divider">
+    </div>
+
+    <div class="timeline">
+
+      <div class="event">
+        <div class="dot"></div>
+        <div class="card">
+          <div class="card-time">06:00</div>
+          <div class="card-title"><span class="card-icon">🌅</span> Tắm biển sớm</div>
+          <p class="card-note">Buổi sáng tắm biển, ngắm bình minh, thư giãn nhẹ nhàng.</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot"></div>
+        <div class="card">
+          <div class="card-time">07:30</div>
+          <div class="card-title"><span class="card-icon">🍳</span> Ăn sáng, cà phê</div>
+          <p class="card-note">Ăn sáng tại quán địa phương hoặc tại nhà nghỉ.</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot"></div>
+        <div class="card">
+          <div class="card-time">09:00</div>
+          <div class="card-title"><span class="card-icon">🛍️</span> Chợ Đầm mua sắm</div>
+          <p class="card-note">Mua quà, đồ lưu niệm, hải sản khô và đặc sản vùng biển.</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot highlight"></div>
+        <div class="card coral">
+          <div class="card-time">12:00</div>
+          <div class="card-title"><span class="card-icon">🍽️</span> Ăn trưa</div>
+          <p class="card-note">Ăn trưa tại nhà hàng địa phương trước khi di chuyển về Cam Đức nhận phòng.</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot night"></div>
+        <div class="card night">
+          <div class="card-time">13:30</div>
+          <div class="card-title"><span class="card-icon">🛏️</span> Di chuyển về Cam Đức – nhận phòng – nghỉ trưa</div>
+          <p class="card-note">Nhận phòng nhà nghỉ, nghỉ ngơi chuẩn bị chiều tắm biển Bãi Dài.</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot"></div>
+        <div class="card">
+          <div class="card-time">15:00</div>
+          <div class="card-title"><span class="card-icon">🏖️</span> Tắm biển Bãi Dài – chơi trò chơi bãi biển</div>
+          <p class="card-note">Hoạt động nhóm: bóng chuyền, thả diều, trò chơi đồng đội.</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot green"></div>
+        <div class="card green">
+          <div class="card-time">17:30</div>
+          <div class="card-title"><span class="card-icon">🚿</span> Tắm nước ngọt – Về nhà nghỉ, thay đồ</div>
+          <p class="card-note">Tắm tráng và nghỉ ngơi chuẩn bị buổi tối.</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot highlight"></div>
+        <div class="card coral">
+          <div class="card-time">18:30</div>
+          <div class="card-title"><span class="card-icon">🍖</span> Thăm nhà bạn Kỳ – Tiệc nướng hải sản</div>
+          <p class="card-note">Tiệc nướng hải sản, sinh hoạt ca đoàn, giao lưu.</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot night"></div>
+        <div class="card night">
+          <div class="card-time">21:00</div>
+          <div class="card-title"><span class="card-icon">🌙</span> Nghỉ đêm – Nhà nghỉ</div>
+          <p class="card-note">Nghỉ ngơi, chuẩn bị cho ngày lễ Chúa Nhật.</p>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end day-block -->
+
+
+  <!-- ── NGÀY 3 ─────────────────────────────────── -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-circle sun">3</div>
+      <div class="day-label">
+        <h2>Ngày 3</h2>
+        <p>Chúa Nhật – Vườn xoài / Trở về</p>
+      </div>
+      <hr class="day-divider">
+    </div>
+
+    <div class="timeline">
+
+      <div class="event">
+        <div class="dot" style="background:#6b47b8;box-shadow:0 0 0 2px #6b47b8;"></div>
+        <div class="card" style="border-left-color:#6b47b8;">
+          <div class="card-time" style="color:#6b47b8;">06:30</div>
+          <div class="card-title"><span class="card-icon">🙏</span> Đi lễ Chúa Nhật</div>
+          <p class="card-note">Dâng lễ sáng tại nhà thờ địa phương; ca đoàn có thể hát lễ.</p>
+          <img src="https://source.unsplash.com/600x400/?church,service" alt="Lễ Chúa Nhật" class="event-img">
+          <span class="tag tag-prayer">🎵 Ca đoàn</span>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot"></div>
+        <div class="card">
+          <div class="card-time">08:00</div>
+          <div class="card-title"><span class="card-icon">☕</span> Cà phê, check-in The Anam</div>
+          <p class="card-note">Thưởng thức cà phê, chụp ảnh tại khuôn viên The Anam (check-in, tham quan nhanh).</p>
+          <img src="https://source.unsplash.com/600x400/?resort,cafe" alt="The Anam" class="event-img">
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot green"></div>
+        <div class="card green">
+          <div class="card-time">09:30</div>
+          <div class="card-title"><span class="card-icon">🥭</span> Tham quan vườn xoài</div>
+          <p class="card-note">Tham quan vườn xoài, mua xoài tươi làm quà cho gia đình.</p>
+          <img src="https://source.unsplash.com/600x400/?mango,orchard" alt="Vườn xoài" class="event-img">
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot highlight"></div>
+        <div class="card coral">
+          <div class="card-time">10:30</div>
+          <div class="card-title"><span class="card-icon">🍽️</span> Ăn trưa / Lựa chọn khởi hành</div>
+          <p class="card-note">Ăn trưa tại Cam Đức rồi khởi hành đi Sài Gòn lúc 12:00. Hoặc khởi hành sớm 10:30 và dừng ăn trưa ở Phan Thiết (~14:00).</p>
+          <span class="tag tag-depart">🚌 Lựa chọn hành trình</span>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="dot" style="background:#0b7fa5;box-shadow:0 0 0 2px #0b7fa5;"></div>
+        <div class="card night">
+          <div class="card-time">19:00</div>
+          <div class="card-title"><span class="card-icon">🏠</span> Về đến Sài Gòn</div>
+          <p class="card-note">Dự kiến về đến TP.HCM lúc ~19:00 (tùy lộ trình và thời gian dừng nghỉ).</p>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end day-block -->
+
+
+  <!-- ── ĐỊA ĐIỂM GỢI Ý THÊM ─────────────────── -->
+  <div class="attractions">
+    <h3>🗺️ Địa điểm tham quan gợi ý ở Nha Trang</h3>
+    <div class="attr-grid">
+
+      <div class="attr-card">
+        <div class="attr-icon">🏖️</div>
+        <div class="attr-name">Bãi biển Trần Phú</div>
+        <div class="attr-desc">Bãi biển trung tâm dài và đẹp, tắm sáng sớm lý tưởng trước khi đông khách.</div>
+        <div class="attr-price">✅ Miễn phí hoàn toàn</div>
+      </div>
+
+      <div class="attr-card green">
+        <div class="attr-icon">🏛️</div>
+        <div class="attr-name">Chùa Long Sơn</div>
+        <div class="attr-desc">Tượng Phật trắng khổng lồ, leo 220 bậc, view toàn thành phố. Mở cửa 24/7.</div>
+        <div class="attr-price">✅ Miễn phí</div>
+      </div>
+
+      <div class="attr-card">
+        <div class="attr-icon">⛩️</div>
+        <div class="attr-name">Tháp Bà Ponagar</div>
+        <div class="attr-desc">Di tích Chăm Pa cổ kính, cách trung tâm 2km. Mở 6:00 – 17:30.</div>
+        <div class="attr-price paid">🎫 ~30.000đ/người</div>
+      </div>
+
+      <div class="attr-card coral">
+        <div class="attr-icon">🗼</div>
+        <div class="attr-name">Quảng trường 2/4 & Tháp Trầm Hương</div>
+        <div class="attr-desc">Biểu tượng ven biển, check-in đẹp, thoáng mát, có nhạc nước buổi tối.</div>
+        <div class="attr-price">✅ Miễn phí</div>
+      </div>
+
+      <div class="attr-card">
+        <div class="attr-icon">🏙️</div>
+        <div class="attr-name">Khu Vega City</div>
+        <div class="attr-desc">Khu đô thị phong cách châu Âu, check-in sống ảo. Bãi Tiên – đường Phạm Văn Đồng.</div>
+        <div class="attr-price">✅ Miễn phí (9:00–19:00)</div>
+      </div>
+
+      <div class="attr-card green">
+        <div class="attr-icon">🌊</div>
+        <div class="attr-name">Bãi Dài – Cam Ranh</div>
+        <div class="attr-desc">Cát trắng, nước trong, ít người. Điểm chính trong lịch trình chiều Thứ 7.</div>
+        <div class="attr-price">✅ Không thu vé vào cổng</div>
+      </div>
+
+      <div class="attr-card green">
+        <div class="attr-icon">⛪</div>
+        <div class="attr-name">Nhà thờ Núi (Nhà thờ Đá)</div>
+        <div class="attr-desc">Nhà thờ cổ, biểu tượng kiến trúc của Nha Trang; nơi lý tưởng để chụp hình và tổ chức ngắn gọn các hoạt động tâm linh.</div>
+        <div class="attr-price">✅ Miễn phí</div>
+      </div>
+
+      <div class="attr-card coral">
+        <div class="attr-icon">🎭</div>
+        <div class="attr-name">Nhà hát Đó</div>
+        <div class="attr-desc">Nhà hát địa phương với các chương trình văn hoá, nghệ thuật. Nên liên hệ trước để đặt vé cho đoàn.</div>
+        <div class="attr-price paid">ℹ️ Liên hệ đặt vé</div>
+      </div>
+
+      <div class="attr-card">
+        <div class="attr-icon">💎</div>
+        <div class="attr-name">Bảo tàng Ngọc Trai Hoàng Gia</div>
+        <div class="attr-desc">Trưng bày quy trình nuôi cấy ngọc trai và các mẫu trang sức. Có cửa hàng quà lưu niệm chất lượng cao.</div>
+        <div class="attr-price paid">🎫 Có phí tham quan</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ── TIPS ─────────────────────────────────── -->
+  <div class="tips-section">
+    <h3>💡 Lưu ý cho đoàn 30 người</h3>
+    <ul class="tip-list">
+      <li>
+        <span class="tip-icon">🚌</span>
+        <span>Thuê <strong>xe 330 chỗ ghế ngả</strong> để đi đêm thoải mái. Đặt xe sớm ít nhất 2–3 tuần.</span>
+      </li>
+      <li>
+        <span class="tip-icon">🏠</span>
+        <span><strong>Nhà nghỉ Phục Linh</strong> (93 Bà Huyện Thanh Quan, Cam Lâm): sân đậu được 4–5 xe 16 chỗ, mở cửa từ 5:30 sáng. 📞 <strong>0363 895 249</strong> – Đặt phòng trước cho đoàn 30 người!</span>
+      </li>
+      <li>
+        <span class="tip-icon">🍽️</span>
+        <span>Quán Vườn Xoài (Chủ Nhật trưa): <strong>gọi đặt bàn trước</strong> cho 30 người. SĐT: <strong>0903 616 237</strong>. Họ mở từ 10:00 sáng.</span>
+      </li>
+      <li>
+        <span class="tip-icon">🌞</span>
+        <span>Chuẩn bị <strong>kem chống nắng SPF 50+, kính mát, mũ nón</strong> cho cả đoàn. Nha Trang mùa hè nắng rất gắt, đặc biệt 10:00–15:00.</span>
+      </li>
+      <li>
+        <span class="tip-icon">👗</span>
+        <span>Khi vào Tháp Bà Ponagar: <strong>không mặc đồ hở vai, hở đùi</strong>. Tháp Bà có cho mượn quần áo dài miễn phí.</span>
+      </li>
+      <li>
+        <span class="tip-icon">📸</span>
+        <span>Phân công <strong>1–2 người chụp ảnh chính thức</strong> cho đoàn. Tháp Bà (kiến trúc cổ), khuôn viên The Anam (xanh mướt).</span>
+      </li>
+      <li>
+        <span class="tip-icon">🎵</span>
+        <span>Buổi tối nướng hải sản là dịp tuyệt vời để <strong>sinh hoạt ca đoàn</strong> – hát hò, chia sẻ!</span>
+      </li>
+    </ul>
+  </div>
+
+</div><!-- end wrapper -->
+
+<footer class="footer">
+  <p>🎵 <strong>Ca Đoàn · Nha Trang & Cam Đức</strong> — Lịch trình hè vui vẻ &amp; bình an</p>
+  <p style="margin-top:6px">Đăng ký tham gia đông đủ nhé mọi người! 🌊☀️🙏</p>
+</footer>
+
+</body>
+</html>
